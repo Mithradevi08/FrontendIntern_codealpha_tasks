@@ -3,30 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gallery</title>
+  <title>Basic Calculator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="top">
-    <h1>Gallery</h1>
-    <input id="search" type="search" placeholder="Search by title" aria-label="Search images">
-    <nav id="filters" class="filters" aria-label="Categories"></nav>
-  </header>
+  <main class="calculator" aria-label="Calculator">
+    <section class="display" aria-live="polite">
+      <div id="result" class="display-main">0</div>
+      <div id="history" class="display-history"></div>
+    </section>
 
-  <main>
-    <p id="empty" class="empty" hidden>No images match. Try another category or search.</p>
-    <section id="grid" class="grid" aria-live="polite"></section>
+    <section class="keys" aria-label="Calculator keys">
+      <button class="key key-accent" data-action="clear" data-key="Escape" aria-label="Clear">C</button>
+      <button class="key key-accent" data-action="backspace" data-key="Backspace" aria-label="Delete">⌫</button>
+      <button class="key key-accent" data-action="percent" data-key="%" aria-label="Percent">%</button>
+      <button class="key key-accent key-op" data-action="operator" data-value="÷" data-key="/" aria-label="Divide">÷</button>
+
+      <button class="key" data-action="digit" data-value="7" data-key="7">7</button>
+      <button class="key" data-action="digit" data-value="8" data-key="8">8</button>
+      <button class="key" data-action="digit" data-value="9" data-key="9">9</button>
+      <button class="key key-accent key-op" data-action="operator" data-value="×" data-key="*" aria-label="Multiply">×</button>
+
+      <button class="key" data-action="digit" data-value="4" data-key="4">4</button>
+      <button class="key" data-action="digit" data-value="5" data-key="5">5</button>
+      <button class="key" data-action="digit" data-value="6" data-key="6">6</button>
+      <button class="key key-accent key-op" data-action="operator" data-value="-" data-key="-" aria-label="Subtract">−</button>
+
+      <button class="key" data-action="digit" data-value="1" data-key="1">1</button>
+      <button class="key" data-action="digit" data-value="2" data-key="2">2</button>
+      <button class="key" data-action="digit" data-value="3" data-key="3">3</button>
+      <button class="key key-accent key-op" data-action="operator" data-value="+" data-key="+" aria-label="Add">+</button>
+
+      <button class="key key-soft" data-action="negate" aria-label="Toggle plus or minus">±</button>
+      <button class="key" data-action="digit" data-value="0" data-key="0">0</button>
+      <button class="key" data-action="decimal" data-key=".">.</button>
+      <button class="key key-equals" data-action="equals" data-key="Enter" aria-label="Equals">=</button>
+    </section>
   </main>
-
-  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
-    <button class="lb-btn lb-close" id="lbClose" aria-label="Close viewer">&times;</button>
-    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous image">&#8249;</button>
-    <figure class="lb-fig">
-      <img id="lbImg" alt="">
-      <figcaption><span id="lbTitle"></span> <span id="lbCount"></span></figcaption>
-    </figure>
-    <button class="lb-btn lb-next" id="lbNext" aria-label="Next image">&#8250;</button>
-  </div>
 
   <script src="script.js"></script>
 </body>
