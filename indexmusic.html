@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Waveform – Music Player</title>
+  <!-- Modern font from Google Fonts (falls back to system fonts if offline) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="stylemusic.css" />
+</head>
+<body>
+  <!-- Blurred colour glow behind the app; colours change with each track -->
+  <div class="bg-glow"></div>
+
+  <main class="app">
+
+    <!-- ================= PLAYER CARD ================= -->
+    <section class="player" aria-label="Music player">
+      <p class="player__label">Now Playing</p>
+
+      <!-- Album artwork -->
+      <div class="artwork" id="artwork-wrap">
+        <img id="cover" src="" alt="Album artwork" />
+      </div>
+
+      <!-- Song info -->
+      <div class="info">
+        <h1 id="title" class="info__title">Song title</h1>
+        <p id="artist" class="info__artist">Artist name</p>
+      </div>
+
+      <!-- Error message (hidden unless audio fails to load) -->
+      <p id="error-msg" class="error-msg" role="alert" hidden></p>
+
+      <!-- Progress bar (a range input = click AND drag to seek) -->
+      <div class="progress">
+        <input type="range" id="progress" min="0" max="1000" value="0" step="1" aria-label="Seek" />
+        <div class="progress__times">
+          <span id="current-time">0:00</span>
+          <span id="duration">0:00</span>
+        </div>
+      </div>
+
+      <!-- Main controls -->
+      <div class="controls">
+        <button id="shuffle-btn" class="btn btn--small" title="Shuffle" aria-label="Shuffle" aria-pressed="false">
+          <svg viewBox="0 0 24 24"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+        </button>
+        <button id="prev-btn" class="btn" title="Previous" aria-label="Previous">
+          <svg viewBox="0 0 24 24" class="fill"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg>
+        </button>
+        <button id="play-btn" class="btn btn--play" title="Play" aria-label="Play">
+          <svg id="icon-play" viewBox="0 0 24 24" class="fill"><path d="M8 5v14l11-7z"/></svg>
+          <svg id="icon-pause" viewBox="0 0 24 24" class="fill" hidden><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+        </button>
+        <button id="next-btn" class="btn" title="Next" aria-label="Next">
+          <svg viewBox="0 0 24 24" class="fill"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg>
+        </button>
+        <button id="repeat-btn" class="btn btn--small" title="Repeat: off" aria-label="Repeat: off">
+          <svg viewBox="0 0 24 24"><path d="M17 2l4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3"/></svg>
+          <span id="repeat-one-badge" class="badge" hidden>1</span>
+        </button>
+      </div>
+
+      <!-- Volume -->
+      <div class="volume">
+        <button id="mute-btn" class="btn btn--small" title="Mute" aria-label="Mute">
+          <svg id="icon-vol" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+          <svg id="icon-mute" viewBox="0 0 24 24" hidden><path d="M11 5 6 9H3v6h3l5 4zM22 9l-6 6M16 9l6 6"/></svg>
+        </button>
+        <input type="range" id="volume" min="0" max="100" value="70" aria-label="Volume" />
+        <span id="volume-value" class="volume__value">70%</span>
+      </div>
+    </section>
+
+    <!-- ================= PLAYLIST ================= -->
+    <section class="playlist" aria-label="Playlist">
+      <div class="playlist__head">
+        <h2>Playlist</h2>
+        <span id="track-count" class="playlist__count">0 songs</span>
+      </div>
+
+      <ul id="playlist" class="playlist__list"></ul>
+
+      <!-- Dynamic playlist: add your own songs -->
+      <details class="add">
+        <summary>＋ Add a song</summary>
+        <form id="add-form" class="add__form">
+          <input type="text" id="add-title" placeholder="Song title" required />
+          <input type="text" id="add-artist" placeholder="Artist (optional)" />
+          <input type="url" id="add-url" placeholder="Audio URL (https://...mp3)" />
+          <label class="add__file">
+            <span>…or choose an audio file from your computer</span>
+            <input type="file" id="add-file" accept="audio/*" />
+          </label>
+          <button type="submit" class="add__submit">Add to playlist</button>
+        </form>
+      </details>
+    </section>
+
+  </main>
+
+  <script src="scriptmusic.js"></script>
+</body>
+</html>
