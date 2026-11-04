@@ -26,7 +26,7 @@ Created a modern calculator with a dark purple gradient background using HTML, C
 - Keyboard support
 - Responsive design
 
-  Music Player
+  ##Music Player
 
 Developed a modern music player with a playlist-based interface using HTML, CSS, and JavaScript. Users can play songs and control music playback through an interactive interface.
 
